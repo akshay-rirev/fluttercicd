@@ -2,10 +2,8 @@ import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
 void main() {
-  final splashSignInButton = find.byValueKey('splash_sign_in_button');
-  final screenSignInButton = find.byValueKey('screen_sign_in_button');
-  final mobileField = find.byValueKey('mobile_field');
-  final otpField = find.byValueKey('otp_field');
+  final addItem = find.byValueKey('AddItem');
+  final clearItem = find.byValueKey('ClearItem');
 
   FlutterDriver driver;
 
@@ -31,16 +29,15 @@ void main() {
     }
   });
 
-  test('SignInTest', () async {
-    if (await waitUntilPresent(splashSignInButton)) {
-      await driver.tap(splashSignInButton);
-    }
-    await driver.waitFor(mobileField);
-    await driver.tap(mobileField);
-    await driver.enterText('9999999999');
-    await driver.tap(screenSignInButton);
-    await driver.waitFor(otpField);
-    await driver.tap(otpField);
-    await driver.enterText('111111');
+  test('AddAndClearItemTest', () async {
+    await waitUntilPresent(addItem);
+
+    // Add an Item
+    await driver.tap(addItem);
+    await driver.tap(addItem);
+    await driver.tap(addItem);
+
+    // Clear Items
+    await driver.tap(clearItem);
   });
 }

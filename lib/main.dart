@@ -36,13 +36,17 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(),
       body: Column(
         children: [
-          ListTile(
-            title: Text('Add new item in list'),
-            onTap: () {
-              setState(() {
-                items.add('My new item ${items.length}');
-              });
-            },
+          Container(
+            color: Colors.yellow,
+            child: ListTile(
+              key: ValueKey<String>('AddItem'),
+              title: Text('Add new item in list'),
+              onTap: () {
+                setState(() {
+                  items.add('My new item ${items.length}');
+                });
+              },
+            ),
           ),
           ...List.generate(items.length, (int index) {
             return ListTile(
@@ -50,6 +54,15 @@ class _MyHomePageState extends State<MyHomePage> {
             );
           }),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        key: ValueKey<String>('ClearItem'),
+        child: Icon(Icons.clear_all),
+        onPressed: () {
+          setState(() {
+            items.clear();
+          });
+        },
       ),
     );
   }
