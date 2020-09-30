@@ -39,7 +39,9 @@ class _MyHomePageState extends State<MyHomePage> {
           ListTile(
             title: Text('Add new item in list'),
             onTap: () {
-              items.add('My new item ${items.length}');
+              setState(() {
+                items.add('My new item ${items.length}');
+              });
             },
           ),
           ...List.generate(items.length, (int index) {
